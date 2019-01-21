@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "head.html" %}
+
+  <body>
+
+  {% include "header.html" %}
+    {% if user.is_staff %}
+    <main class="container">
+      <div class="row">
+       <br>
+       
+
+        <!-- Main content -->
+       <article class="col-md-9 col-sm-9 col-xs-12 main-content" role="main">
+
+        {% if doc_pages|length > 0 %}
+       {% for doc_page in doc_pages%}
+      <br>
+      <div style="text-transform: uppercase;">
+      <h1><bold>{{doc_page.project}}</bold></h1></div>
+      <div>
+      <cite style="color: #999"> {{ doc_page.project.product}}; Authored by: {{ doc_page.author}}; Last updated: {{ doc_page.modified_date_time}}</cite>
+    </div>
+          
+
+          <section>
+
+            {{doc_page.about | safe}}
+
+          </section>
+
+
+          <section>
+
+          
+            
+                <h3 style="color: #555555">{{doc_page.note}}</h3>
+                
+              
+
+          </section>
+        
+        
+
+         
+
+        </article>
+      
+     {% include "sidebar.html" %}
+     {% endfor %}
+
+      {% else %}
+      <h1> Documentation Not Available</h1>
+      {% endif%}
+        <!-- END Main content -->
+     
+      </div>
+    </main>
+    
+    {% endif %}
+
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+    <!-- END Footer -->
+
+    <!-- Scripts -->
+    <script src="/static/js/nextdocs.js"></script>
+    <script src="/static/js/custom.js"></script>
+
+  </body>
+
+</html>

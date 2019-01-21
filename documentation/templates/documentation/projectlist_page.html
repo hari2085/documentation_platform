@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "head.html" %}
+
+  <body>
+
+    {% include "header.html" %}
+    {% if user.is_staff %}
+    <main class="container">
+      <div class="row">
+        <article class="col-lg-9 col-md-9 col-sm-9 col-xs-12 main-content" role="main">
+          <section>
+            
+            <div style="text-transform: uppercase;">
+            <h1>{{product}}</h1>
+            </div>
+            <div  class="c"><p>{{product.product_description}}</p></div>
+            <br>
+            {% if projects|length > 0%}
+            <blockquote style="font-size: 16px">Below are the available documentation</blockquote>
+            <div class="row">
+            {% for doc in docs %}
+            {% if doc.project.product_id == product.id %}
+              <div class="col-md-6 col-sm-6">
+                <div class="promo small-icon left">
+                  <i class="fa fa-tv"></i>
+                  <h3><a href="{% url 'detailproject' product.id doc.project.id doc.version %}">{{doc.project.project}}</a></h3>
+                
+                <div> <p>{{doc.project.project_description}}</p></div>
+                <!-- <div class="pro">
+                        ver {{doc.version}}</q>
+                      </div> -->
+
+                </div>
+              </div>
+              {% endif%}
+              {% endfor %}
+              </div>
+              {% endif%}
+              
+              
+            <br><br>
+          </section>
+ </article>
+
+        {% include "sidebar.html" %}
+        <!-- END Main content -->
+      </div>
+    </main>
+    
+    {% endif %}
+
+
+    {% include "footer.html"%}
+
+    <!-- Scripts -->
+    
+
+  </body>
+
+</html>

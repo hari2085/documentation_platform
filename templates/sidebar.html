@@ -1,0 +1,17 @@
+<aside class="col-lg-3 col-md-3 col-sm-3 col-xs-12 " >
+          <div class="aside-widget " >
+            <h2 >Tags</h2>
+            
+            <div class="body" style="padding-left: 0px">
+
+            <ul class="tags">
+              <li>
+                {% for tag in tags%}
+                <a href="{% url 'page' tag.id %} ">{{tag}}</a>
+                {% endfor %}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+</aside>

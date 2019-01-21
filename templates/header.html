@@ -1,0 +1,59 @@
+
+
+    <header class="site-header navbar-fullwidth navbar-transparent sticky">
+
+      <!-- Top navbar & branding -->
+      <nav class="navbar navbar-default">
+        <div class="container">
+
+          <!-- Toggle buttons and brand -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+              <span class="glyphicon glyphicon-option-vertical"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="http://www.digitalgreen.org/wp-content/uploads/2017/05/logo-2.png" alt="logo"></a>
+          </div>
+          <!-- END Toggle buttons and brand -->
+
+          <!-- Top navbar -->
+          <div id="navbar" class="navbar-collapse collapse" aria-expanded="true" role="banner">
+            <ul class="nav navbar-nav navbar-right">
+            	{% if user.is_authenticated %}
+            	<li > <a>WELCOME,  {% firstof user.get_short_name user.get_username %}</a></li>
+            	{% endif %}
+              <li ><a href="/">Home</a></li>
+              <li ><a href="/admin">ADMIN</a></li>
+              
+              {% if user.is_authenticated %}
+         
+              <li  ><a href="/logout">LOGOUT</a></li>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- END Top navbar -->
+
+        </div>
+      </nav>
+      <!-- END Top navbar & branding -->
+
+
+      <!-- Banner -->
+       {% if user.is_authenticated %}
+          <h1> </h1>
+      {% else %}
+        <div class="banner banner-full-height overlay-black">
+           <div class="container text-center">
+           <h4>Documentation</h4>
+           <br><br>
+         
+           <h5><center>Login to start documentation</center></h5>
+          <br>
+          <a class="btn btn-white btn-xl btn-outline" href="/login" role="button"> Login</a>
+          {% endif %}
+        </div>
+
+      </div>
+      <!-- END Banner -->
+
+    </header>
+  

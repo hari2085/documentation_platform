@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "head.html" %}
+
+  <body>
+    {% include "header.html" %}
+    {% if user.is_staff %}
+    <main class="container">
+      <div class="row">
+        <article class="col-lg-9 col-md-9 col-sm-9 col-xs-12 main-content" role="main">
+          <section>
+            <div class="row">
+            {% for product in products %}
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="promo small-icon left">
+                  <i class="fa fa-tv"></i>
+                  <h3><a href="{% url 'detailproduct' product.id %}">{{product}}</a></h3>
+                      <div><p>{{product.product_description}}</p></div>
+                      <div class="cap">
+                      <li style="display: inline;list-style: none">
+                        {% for doc in docs%}
+                        {% if doc.project.product_id == product.id %}
+                        <a class="pro" href="{% url 'detailproject' product.id doc.project.id doc.version %}">{{doc.project.project}} 
+                          </a>
+                        {%endif%}
+                        {% endfor %}
+                      </li></div>
+                      
+                </div>
+              </div>
+              {% endfor %}
+              </div>
+            <br><br>
+          </section>
+
+      
+
+        </article>
+
+        {% include "sidebar.html" %}
+        <!-- END Main content -->
+      </div>
+    </main>
+    {% include "footer.html"%}
+    {% endif %}
+
+
+    
+
+    <!-- Scripts -->
+    <script src="/static/js/nextdocs.js"></script>
+    <script src="/static/js/custom.js"></script>
+
+  </body>
+
+</html>
